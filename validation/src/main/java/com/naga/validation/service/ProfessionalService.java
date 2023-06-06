@@ -3,7 +3,6 @@ package com.naga.validation.service;
 import com.naga.validation.dto.PersonalDetails;
 import com.naga.validation.dto.Professional;
 import com.naga.validation.exceptions.PersonalException;
-import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 import java.util.Optional;
@@ -13,7 +12,7 @@ public interface ProfessionalService {
 
     public List<Professional> getAllProfessionalDetails();
 
-    public Professional getProfessionals(int prf_id);
+    public Optional<Professional> getProfessionals(int prf_id);
 
     //Professional getProfessionalByQuery(Integer prf_id);
 

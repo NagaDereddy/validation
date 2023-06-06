@@ -3,41 +3,62 @@ package com.naga.validation.service;
 import com.naga.validation.dto.PersonalDetails;
 import com.naga.validation.dto.Professional;
 import com.naga.validation.exceptions.PersonalException;
+import com.naga.validation.repository.PersonalDetailsRepository;
+import com.naga.validation.repository.ProfessionalRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
+@Service
 public class ProfessionalServiceImpl implements ProfessionalService{
 
 
-    
+    @Autowired
+    public ProfessionalRepository repository;
+
+    @Autowired
+    public PersonalDetailsRepository personalRepo;
+
+
+
+
     @Override
     public Professional saveProfessional(Professional professional) {
-        return null;
+        return repository.save(professional);
     }
 
     @Override
     public List<Professional> getAllProfessionalDetails() {
-        return null;
+
+        List<Professional> professional=new ArrayList<>();
+
+        professional=repository.findAll();
+        professional.stream();
+
+        return repository.findAll();
     }
 
     @Override
-    public Professional getProfessionals(int prf_id) {
-        return null;
+    public Optional<Professional> getProfessionals(int prf_id) {
+        return repository.findById(prf_id);
     }
 
     @Override
     public PersonalDetails personaldetails(PersonalDetails person) {
-        return null;
+        return personalRepo.save(person);
     }
 
     @Override
     public List<PersonalDetails> getAllPersonalDetails() {
-        return null;
+        return personalRepo.findAll();
     }
 
     @Override
     public PersonalDetails getPersonalDetailById(Integer personId) {
-        return null;
+        return personalRepo.findByPersonId(personId);
     }
 
     @Override
@@ -47,6 +68,6 @@ public class ProfessionalServiceImpl implements ProfessionalService{
 
     @Override
     public PersonalDetails getPersonalByName(String name) throws PersonalException {
-        return null;
+        return personalRepo.findByProfessionalName(name);
     }
 }

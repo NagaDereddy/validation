@@ -6,11 +6,11 @@ import com.naga.validation.exceptions.PersonalException;
 import com.naga.validation.service.ProfessionalService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping(value="/professional")
@@ -31,7 +31,7 @@ public class ProfessionalController {
     }
 
     @GetMapping(value = "/getProfessional/{prfId}")
-    public @ResponseBody Professional getProfessional(@PathVariable int prf_id){
+    public @ResponseBody Optional<Professional> getProfessional(@PathVariable int prf_id){
 
         return professionalService.getProfessionals(prf_id);
     }
