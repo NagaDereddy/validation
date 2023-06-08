@@ -6,9 +6,13 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 @Repository
 public interface ProfessionalRepository extends JpaRepository<Professional,Integer> {
-   // Professional findByPrf_name(String name);
+  public  Optional<Professional> findByPrfId(int prfId);
+
+    // Professional findByPrf_name(String name);
     //Professional findByPrf_Id(Integer prfId);
 
 

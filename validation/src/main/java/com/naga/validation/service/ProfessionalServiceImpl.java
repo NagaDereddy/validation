@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Stream;
 
 @Service
 public class ProfessionalServiceImpl implements ProfessionalService{
@@ -33,17 +34,19 @@ public class ProfessionalServiceImpl implements ProfessionalService{
     @Override
     public List<Professional> getAllProfessionalDetails() {
 
-        List<Professional> professional=new ArrayList<>();
+        List<Professional> professional=repository.findAll();
 
-        professional=repository.findAll();
-        professional.stream();
+
+        Stream<Professional> newstream = professional.stream();
+
+       newstream.forEach((t)->{ System.out.println(t);});
 
         return repository.findAll();
     }
 
     @Override
-    public Optional<Professional> getProfessionals(int prf_id) {
-        return repository.findById(prf_id);
+    public Optional<Professional> getProfessionals(int prfId) {
+        return repository.findByPrfId(prfId);
     }
 
     @Override
