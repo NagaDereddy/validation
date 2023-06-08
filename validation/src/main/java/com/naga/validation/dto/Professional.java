@@ -15,18 +15,18 @@ import lombok.*;
 @JsonIgnoreProperties({"hibernateLazyInitializer"})
 public class Professional {
     @Id
-    @Column(name = "prf_Id")
+    @Column(name = "prfId")
     //@GeneratedValue(strategy = GenerationType.TABLE)
-    private Integer prf_Id;
+    private Integer prfId;
     @NotNull(message = "Professional Name should not be null")
-    @Column(name = "prf_name")
-    private  String prf_name;
+    @Column(name = "prfName")
+    private  String prfName;
     @NotNull(message = "Professional Company Name should not be null")
-    @Column(name = "prf_company")
-    private  String prf_company;
+    @Column(name = "prfCompany")
+    private  String prfCompany;
     @NotNull(message = "Professional Employment Type should not be null")
-    @Column(name = "employment_type")
-    private  String employment_type;
+    @Column(name = "employmentType")
+    private  String employmentType;
 
 
 }

@@ -6,6 +6,8 @@ import com.naga.validation.exceptions.PersonalException;
 import com.naga.validation.service.ProfessionalService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,19 +23,23 @@ public class ProfessionalController {
     ProfessionalService professionalService;
 
     @PostMapping(value="/saveProfessional" ,consumes="Application/JSON")
-    public @ResponseBody Professional saveProfessional(@RequestBody @Valid Professional professional){
+    public ResponseEntity<Professional> saveProfessional(@RequestBody @Valid Professional professional){
 
-        return professionalService.saveProfessional(professional);
+
+      return new ResponseEntity<>(professionalService.saveProfessional(professional),HttpStatus.CREATED);
+
+
     }
     @GetMapping(value = "/getAllProfessionals")
     public @ResponseBody List<Professional>  getAllProfessionals(){
+
         return professionalService.getAllProfessionalDetails();
     }
 
     @GetMapping(value = "/getProfessional/{prfId}")
-    public @ResponseBody Optional<Professional> getProfessional(@PathVariable int prf_id){
+    public @ResponseBody Optional<Professional> getProfessional(@PathVariable int prfId){
 
-        return professionalService.getProfessionals(prf_id);
+        return professionalService.getProfessionals(prfId);
     }
 //     using this getting an error beans creation
 
@@ -43,10 +49,10 @@ public class ProfessionalController {
 //        return professionalService.getProfessionalByName(name);
 //    }
 
-//    @GetMapping(value = "/getProfessionalByQuery/{prf_id}")
-//    public @ResponseBody Professional getProfessionalByQuery(@PathVariable int prf_id){
+//    @GetMapping(value = "/getProfessionalByQuery/{prfId}")
+//    public @ResponseBody Professional getProfessionalByQuery(@PathVariable int prfId){
 //
-//        return professionalService.getProfessionalByQuery((Integer)prf_id);
+//        return professionalService.getProfessionalByQuery(prfId);
 //    }
 
 
